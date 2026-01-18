@@ -1,0 +1,6 @@
+langchain
+langchain-openai
+chromadb
+llama-parse
+python-dotenv
+pypdf
