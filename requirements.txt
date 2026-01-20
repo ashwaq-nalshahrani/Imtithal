@@ -1,6 +1,7 @@
-langchain
-langchain-openai
-chromadb
-llama-parse
+google-generativeai
 python-dotenv
+chromadb
+llama-index
+llama-parse
 pypdf
+sentence-transformers
