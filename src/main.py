@@ -90,4 +90,5 @@ if __name__ == "__main__":
         
         print("\n" + "-"*30)
         print(f"رد إمتثال AI المدمج:\n{answer}")
-        print("-"*30)
+        print("-"*30)       
+        
