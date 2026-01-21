@@ -5,3 +5,4 @@ llama-index
 llama-parse
 pypdf
 sentence-transformers
+streamlit

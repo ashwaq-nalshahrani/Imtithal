@@ -3,7 +3,7 @@ import chromadb
 from sentence_transformers import SentenceTransformer
 from llama_parse import LlamaParse
 from dotenv import load_dotenv
-
+import google.generativeai as genai
 load_dotenv()
 
 # Load BGE-M3 model (Multilingual & High Performance for Arabic)
@@ -75,3 +75,25 @@ def index_files_with_llama(folder_path, collection):
                     )
                     
     print("Indexing Complete! Your specialized knowledge base is ready.")
+
+def calculate_compliance_score(analysis_text):
+    """
+    تطلب من Gemini تحويل التحليل النصي إلى درجة مئوية.
+    """
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    prompt = f"""
+    بناءً على التحليل القانوني التالي للفجوات بين سياسة الشركة والأنظمة السعودية:
+    ---
+    {analysis_text}
+    ---
+    المطلب:
+    قدر نسبة الامتثال الإجمالية للشركة من 100%.
+    أعطني النتيجة كـ "رقم فقط" (مثلاً: 75). لا تكتب أي نص إضافي.
+    """
+    try:
+        response = model.generate_content(prompt)
+        # تنظيف النص الناتج وتحويله لرقم
+        score_str = "".join(filter(str.isdigit, response.text.strip()))
+        return int(score_str) if score_str else 0
+    except:
+        return 0
