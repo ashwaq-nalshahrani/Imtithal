@@ -2,7 +2,7 @@ import os
 import time 
 from dotenv import load_dotenv
 from google import genai 
-from utils import embedding_model, get_chroma_collection, index_files_with_llama
+from utils import embedding_model, get_chroma_collection, index_files 
 
 load_dotenv()
 
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     
     choice = input("هل تريد إعادة قراءة ملفات الأنظمة الرسمية؟ (y/n): ")
     if choice.lower() == 'y':
-        index_files_with_llama("data", collection)
+        index_files("data", collection)
 
     print("\nالحالة: متصل بالأنظمة وملفات الشركة. اكتب 'exit' للخروج.")
     
