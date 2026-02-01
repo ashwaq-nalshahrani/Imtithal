@@ -27,7 +27,7 @@ def compress_chromadb(db_path="./chroma_db", output_zip="chroma_db_backup.zip"):
     print(f"\n📤 Share this file with your friends!")
 
 
-def extract_chromadb(zip_path="chroma_db_backup.zip", extract_to="./"):
+def extract_chromadb(zip_path="chroma_db_backup_new.zip", extract_to="./"):
     """
     Extract ChromaDB from shared zip file.
     """
