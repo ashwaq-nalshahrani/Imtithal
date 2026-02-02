@@ -412,3 +412,15 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# =========================================================
+# Wrapper for evaluation scripts (expects ask_rag)
+# =========================================================
+_rag_instance = None
+
+def ask_rag(query: str):
+    global _rag_instance
+    if _rag_instance is None:
+        _rag_instance = ImtithalRAG()
+    res = _rag_instance.ask(query)
+    return res['answer'], res.get('sources', [])

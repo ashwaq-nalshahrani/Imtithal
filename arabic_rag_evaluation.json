@@ -1,0 +1,309 @@
+{
+  "results": [
+    {
+      "id": "factual_1",
+      "type": "factual",
+      "question": "ما هي النقاط الرئيسية في هذا المستند؟",
+      "ground_truth": "# الهيئة الوطنية للأمن السيبراني National Cybersecurity Authority # ضوابط الأمن السيبراني للحوسبة السحابية Cloud Cybersecurity Controls (CCC - 2 : 2024) | إشارة المشاركة: | أبيض | | --------------- | ",
+      "answer": "النقاط الرئيسية في هذا المستند هي:\n\n1. **سياسة الخصوصية**: توضح سياسة الخصوصية البيانات الشخصية التي سيتم جمعها، والغرض من معالجتها وكيفية استخدامها والمسوغ النظامي لجمعها ومعالجتها، والجهات التي سيتم",
+      "used_sources": [
+        {
+          "file_name": "PrivacyPolicyGuidelineArabic.pdf",
+          "subject": "PrivacyPolicyGuidelineArabic.pdf - القسم 2",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "DataManagementPersonalDataProtectionStandardsAr.pdf",
+          "subject": "DataManagementPersonalDataProtectionStandardsAr.pdf - القسم 130",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "File0001.pdf",
+          "subject": "File0001.pdf - القسم 28",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 2",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "National_Cybersecurity_Authority_Organization.pdf",
+          "subject": "National_Cybersecurity_Authority_Organization.pdf - القسم 9",
+          "category": "NCA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.873,
+        "faithfulness": 0.4,
+        "relevance": 0.749,
+        "completeness": 0.106,
+        "hallucination": 0.6,
+        "accuracy": 0.032,
+        "recall": 0.106,
+        "precision": 0.044,
+        "overall": 0.475
+      }
+    },
+    {
+      "id": "factual_2",
+      "type": "factual",
+      "question": "ما هي النقاط الرئيسية في هذا المستند؟",
+      "ground_truth": "الهيئة الوطنية للأمن السيبراني National Cybersecurity Authority ضوابط الأمن السيبراني للبيانات Data Cybersecurity Controls (DCC -1: 2022) إشارة المشاركة: أبيض تصنيف الوثيقة: عام بسم الله الرحمن الرحيم",
+      "answer": "النقاط الرئيسية في هذا المستند هي:\n\n1. **سياسة الخصوصية**: توضح سياسة الخصوصية البيانات الشخصية التي سيتم جمعها، والغرض من معالجتها وكيفية استخدامها والمسوغ النظامي لجمعها ومعالجتها، والجهات التي سيتم",
+      "used_sources": [
+        {
+          "file_name": "PrivacyPolicyGuidelineArabic.pdf",
+          "subject": "PrivacyPolicyGuidelineArabic.pdf - القسم 2",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "DataManagementPersonalDataProtectionStandardsAr.pdf",
+          "subject": "DataManagementPersonalDataProtectionStandardsAr.pdf - القسم 130",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "File0001.pdf",
+          "subject": "File0001.pdf - القسم 28",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 2",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "National_Cybersecurity_Authority_Organization.pdf",
+          "subject": "National_Cybersecurity_Authority_Organization.pdf - القسم 9",
+          "category": "NCA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.852,
+        "faithfulness": 0.25,
+        "relevance": 0.742,
+        "completeness": 0.072,
+        "hallucination": 0.75,
+        "accuracy": 0.032,
+        "recall": 0.072,
+        "precision": 0.053,
+        "overall": 0.417
+      }
+    },
+    {
+      "id": "factual_3",
+      "type": "factual",
+      "question": "ما هي النقاط الرئيسية في هذا المستند؟",
+      "ground_truth": "الهيئة الوطنية للأمن السيبراني National Cybersecurity Authority # الضوابط الأساسية للأمن السيبراني Essential Cybersecurity Controls (ECC - 2 : 2024) | إشارة المشاركة: | أبيض | | --------------- | ----",
+      "answer": "النقاط الرئيسية في هذا المستند هي:\n\n1. **سياسة الخصوصية**: توضح سياسة الخصوصية البيانات الشخصية التي سيتم جمعها، والغرض من معالجتها وكيفية استخدامها والمسوغ النظامي لجمعها ومعالجتها، والجهات التي سيتم",
+      "used_sources": [
+        {
+          "file_name": "PrivacyPolicyGuidelineArabic.pdf",
+          "subject": "PrivacyPolicyGuidelineArabic.pdf - القسم 2",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "DataManagementPersonalDataProtectionStandardsAr.pdf",
+          "subject": "DataManagementPersonalDataProtectionStandardsAr.pdf - القسم 130",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "File0001.pdf",
+          "subject": "File0001.pdf - القسم 28",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 2",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "National_Cybersecurity_Authority_Organization.pdf",
+          "subject": "National_Cybersecurity_Authority_Organization.pdf - القسم 9",
+          "category": "NCA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.884,
+        "faithfulness": 0.333,
+        "relevance": 0.758,
+        "completeness": 0.111,
+        "hallucination": 0.667,
+        "accuracy": 0.029,
+        "recall": 0.111,
+        "precision": 0.038,
+        "overall": 0.46
+      }
+    },
+    {
+      "id": "conceptual_1",
+      "type": "conceptual",
+      "question": `"اشرح المفهوم الموضح في المستند",
+      "ground_truth": "# المادة الثالثة: الهيئة هي الجهة المختصة في المملكة بالأمن السيبراني، والمرجع الوطني في شؤونه، وتهدف إلى تعزيز حماية للمصالح الحيوية للدولة وأمنها الوطني والبنى التحتية الحساسة والقطاعات ذات الأولوية",
+      "answer": "المفهوم الموضح في المستند هو \"الإطار الوطني للمعايير المهنية للبيانات والذكاء الاصطناعي\"، والذي يهدف إلى تنظيم القطاع وتوحيد وتحسين الممارسات المهنية والتطبيقات المتعلقة بتنمية القدرات البشرية في مجال",
+      "used_sources": [
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 6",
+          "category": "SDAIA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.88,
+        "faithfulness": 1.0,
+        "relevance": 0.779,
+        "completeness": 0.033,
+        "hallucination": 0.0,
+        "accuracy": 0.024,
+        "recall": 0.033,
+        "precision": 0.077,
+        "overall": 0.646
+      }
+    },
+    {
+      "id": "conceptual_2",
+      "type": "conceptual",
+      "question": "اشرح المفهوم الموضح في المستند",
+      "ground_truth": "يتولى مفتشون، يصدر بتحديدهم قرار من محافظ الهيئة الوطنية للأمن السيبراني، منفردين أو مجتمعين ضبط المخالفات المشار إليها في البند (أولا) من هذه الممكنات، والتحقيق فيها\n\nولهم في سبيل ذلك الرقابة والتفتي",
+      "answer": "الإطار الوطني للمعايير المهنية للبيانات والذكاء الاصطناعي هو مرجع أساسي للمهتمين بالقطاع، يهدف إلى تنظيم القطاع وتوحيد وتحسين الممارسات المهنية والتطبيقات المتعلقة بتنمية القدرات البشرية في مجالات الب",
+      "used_sources": [
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 10",
+          "category": "SDAIA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.73,
+        "faithfulness": 0.0,
+        "relevance": 0.738,
+        "completeness": 0.016,
+        "hallucination": 1.0,
+        "accuracy": 0.011,
+        "recall": 0.016,
+        "precision": 0.038,
+        "overall": 0.298
+      }
+    },
+    {
+      "id": "conceptual_3",
+      "type": "conceptual",
+      "question": "اشرح المفهوم الموضح في المستند",
+      "ground_truth": "4 # مبادئ أخلاقيات الذكاء الاصطناعي وإشارة إلى الترتيبات التنظيمية للهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا)، الصادرة بقرار مجلس الوزراء رقم (292) وتاريخ 27/04/1441ه، القاضي في الفقرة (1) من ",
+      "answer": "الإطار الوطني للمعايير المهنية للبيانات والذكاء الاصطناعي هو مرجع أساسي للمهتمين بالقطاع، يهدف إلى تنظيم القطاع وتوحيد وتحسين الممارسات المهنية والتطبيقات المتعلقة بتنمية القدرات البشرية في مجالات الب",
+      "used_sources": [
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 2",
+          "category": "SDAIA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.807,
+        "faithfulness": 1.0,
+        "relevance": 0.71,
+        "completeness": 0.095,
+        "hallucination": 0.0,
+        "accuracy": 0.072,
+        "recall": 0.095,
+        "precision": 0.231,
+        "overall": 0.635
+      }
+    },
+    {
+      "id": "reasoning_1",
+      "type": "reasoning",
+      "question": "قارن بين المعلومات في مستندين متعلقين بـ NCA",
+      "ground_truth": "# الهيئة الوطنية للأمن السيبراني National Cybersecurity Authority # ضوابط الأمن السيبراني للحوسبة السحابية Cloud Cybersecurity Controls (CCC - 2 : 2024) | إشارة المشاركة: | أبيض | | --------------- | ",
+      "answer": "بالنسبة لمستند File0002.pdf، يمكننا أن نستنتج أن الإطار الوطني للمعايير المهنية للبيانات والذكاء الاصطناعي (NCA) يهدف إلى تنظيم القطاع وتوحيد وتحسين الممارسات المهنية والتطبيقات المتعلقة بتنمية القدرا",
+      "used_sources": [
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 10",
+          "category": "SDAIA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.825,
+        "faithfulness": 0.583,
+        "relevance": 0.729,
+        "completeness": 0.0,
+        "hallucination": 0.417,
+        "accuracy": 0.0,
+        "recall": 0.0,
+        "precision": 0.0,
+        "overall": 0.491
+      }
+    },
+    {
+      "id": "reasoning_2",
+      "type": "reasoning",
+      "question": "قارن بين المعلومات في مستندين متعلقين بـ NCA",
+      "ground_truth": "| إشارة المشاركة: أبيض ٢ تصنيف الوثيقة: عام ضوابط الأمن السيبراني للحوسبة السحابية # قائمة المحتويات | المحتوى | الصفحة | | ----------------------------------------------------------------------------",
+      "answer": "بالنسبة لمستند File0002.pdf، يمكننا أن نستنتج أن NCA يتضمن تصنيفات مختلفة للمهن في مجال البيانات والذكاء الاصطناعي، مثل:\n\n* قيادة البيانات والذكاء الاصطناعي\n* استشارات الذكاء الاصطناعي\n* إدارة حوكمة و",
+      "used_sources": [
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 44",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "DataManagementPersonalDataProtectionStandardsAr.pdf",
+          "subject": "DataManagementPersonalDataProtectionStandardsAr.pdf - القسم 20",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "GeneralRulesForSecondaryUseOfData_AR.pdf",
+          "subject": "GeneralRulesForSecondaryUseOfData_AR.pdf - القسم 3",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "RegulationonPersonalDataAR.pdf",
+          "subject": "RegulationonPersonalDataAR.pdf - القسم 6",
+          "category": "SDAIA"
+        },
+        {
+          "file_name": "StandardContractualClausesForPersonalDataTransferAR.pdf",
+          "subject": "StandardContractualClausesForPersonalDataTransferAR.pdf - القسم 11",
+          "category": "SDAIA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.799,
+        "faithfulness": 0.6,
+        "relevance": 0.704,
+        "completeness": 0.0,
+        "hallucination": 0.4,
+        "accuracy": 0.0,
+        "recall": 0.0,
+        "precision": 0.0,
+        "overall": 0.485
+      }
+    },
+    {
+      "id": "reasoning_3",
+      "type": "reasoning",
+      "question": "قارن بين المعلومات في مستندين متعلقين بـ NCA",
+      "ground_truth": "Transcribe the \"List of Figures\" section, including the heading and each item with its description and page number\n\nTranscribe the \"List of Tables\" section, including the heading and each item with it",
+      "answer": "بالنسبة لمستند File0002.pdf، يمكننا أن نستنتج أن NCA يتضمن تصنيفات مختلفة للمهن في مجال البيانات والذكاء الاصطناعي، مثل:\n\n* عالم بيانات\n* محلل بيانات\n* محلل حوكمة البيانات\n\nبالنسبة لمستند DataManageme",
+      "used_sources": [
+        {
+          "file_name": "File0002.pdf",
+          "subject": "File0002.pdf - القسم 59",
+          "category": "SDAIA"
+        }
+      ],
+      "metrics": {
+        "correctness": 0.777,
+        "faithfulness": 0.3,
+        "relevance": 0.7,
+        "completeness": 0.0,
+        "hallucination": 0.7,
+        "accuracy": 0.0,
+        "recall": 0.0,
+        "precision": 0.0,
+        "overall": 0.389
+      }
+    }
+  ]
+}
