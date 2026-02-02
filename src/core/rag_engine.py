@@ -362,6 +362,14 @@ class ImtithalRAG:
 
         return {"answer": answer, "question": question, "sources": sources}
 
+    def ask_simple(self, question: str):
+        """دالة مخصصة للـ API لتعيد الإجابة والمصادر كبيانات فقط"""
+        response = self.ask(question, verbose=False) # تعطيل الطباعة في التيرمينال
+        return {
+            "answer": response['answer'],
+            "sources": response['sources']
+        }
+    
     def chat_interactive(self):
         print("\n" + "=" * 70)
         print("💬 وضع المحادثة التفاعلية الذكية")
@@ -404,11 +412,10 @@ class ImtithalRAG:
                 print(f"\n❌ خطأ: {e}\n")
                 continue
 
-
 def main():
     rag = ImtithalRAG(db_path="./chroma_db", collection_name="imtithal_docs")
     rag.chat_interactive()
 
-
-if __name__ == "__main__":
-    main()
+rag_instance = ImtithalRAG()
+#if __name__ == "__main__":
+    #main()
