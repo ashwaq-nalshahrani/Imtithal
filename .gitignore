@@ -3,6 +3,5 @@
 __pycache__/
 *.pyc
 .DS_Store
-chroma_db/
 *.zip
 imtithal-ai-compliance/
