@@ -22,9 +22,26 @@ embedding_model = SentenceTransformer("BAAI/bge-m3")
 # ===========================
 # ChromaDB
 # ===========================
-def get_chroma_collection(db_path="./chroma_db", collection_name="imtithal_docs"):
-    client = chromadb.PersistentClient(path=db_path)
-    return client.get_or_create_collection(name=collection_name)
+class ImtithalRAG:
+    def __init__(self, db_path="./chroma_db", collection_name="imtithal_docs"):
+        self.db_path = db_path
+        self.collection_name = collection_name
+        self.client = chromadb.PersistentClient(path=self.db_path)
+        self.collection = self.client.get_or_create_collection(name=self.collection_name)
+
+        # Check if the collection is empty
+        stored = self.collection.get()
+        if not stored.get("ids"):
+            print("⚠️  Collection is empty. BM25 initialization skipped.")
+            self.bm25_initialized = False
+        else:
+            self.bm25_initialized = True
+
+    def get_collection(self):
+        return self.collection
+
+# Initialize the RAG instance
+rag_instance = ImtithalRAG()
 
 # ===========================
 # Show ChromaDB Summary
@@ -472,6 +489,10 @@ def index_files(folder_path: str, collection, debug_mode=False):
     print(f"{'='*70}\n")
 
     show_chroma_summary(collection, "FINAL STATE")
+
+def get_chroma_collection(db_path="./chroma_db", collection_name="imtithal_docs"):
+    client = chromadb.PersistentClient(path=db_path)
+    return client.get_or_create_collection(name=collection_name)
 
 print("✅ Functions loaded! Now run:")
 print("collection = get_chroma_collection()")

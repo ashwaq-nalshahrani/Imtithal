@@ -134,7 +134,6 @@ class QueryRewriter:
         except Exception:
             return f"{chat_history[-1]['question']} {query}"
 
-
 class HybridRetriever:
     def __init__(self, collection, embedding_model, semantic_weight=0.7, keyword_weight=0.3):
         self.collection = collection
@@ -225,9 +224,16 @@ class ImtithalRAG:
 
         print("📂 Loading ChromaDB collection...")
         client = chromadb.PersistentClient(path=db_path)
-        self.collection = client.get_collection(name=collection_name)
-        chunk_count = self.collection.count()
-        print(f"✅ Loaded {chunk_count} existing chunks\n")
+        self.collection = client.get_or_create_collection(name=collection_name)
+        stored = self.collection.get()
+        chunk_count = len(stored.get("ids", []))
+
+        if chunk_count == 0:
+            print("⚠️  Collection is empty. BM25 initialization skipped.")
+            self.bm25_initialized = False
+        else:
+            print(f"✅ Loaded {chunk_count} existing chunks\n")
+            self.bm25_initialized = True
 
         print("🧠 Loading BGE-M3 embedding model...")
         self.embedding_model = SentenceTransformer("BAAI/bge-m3")
@@ -316,16 +322,12 @@ class ImtithalRAG:
     def ask(self, question: str, verbose: bool = True) -> Dict:
         cleaned = self.cleaner.clean(question)
 
-        # --- Step 1: Classify ---
         classification = self.classifier.classify(cleaned, self.chat_history)
         is_followup = classification["is_followup"]
 
         if verbose:
             print(f"\n🔍 نوع السؤال: {'متابعة' if is_followup else 'جديد'} — {classification['reason']}")
 
-        # --- Step 2: Determine the search query ---
-        # Followups get rewritten into standalone queries so the retriever
-        # can actually find the relevant source docs.
         if is_followup and self.chat_history:
             search_query = self.rewriter.rewrite(cleaned, self.chat_history)
             if verbose:
@@ -333,12 +335,10 @@ class ImtithalRAG:
         else:
             search_query = cleaned
 
-        # --- Step 3: ALWAYS retrieve. Source docs are ground truth. ---
         retrieved = self.retriever.retrieve(search_query, top_k=15)
         reranked = self.reranker.rerank(search_query, retrieved, top_n=6)
         context, sources = self._build_context(reranked)
 
-        # --- Step 4: Pick the right prompt and invoke ---
         if is_followup and self.chat_history:
             prev = self.chat_history[-1]
             answer = (self.prompt_followup | self.llm | StrOutputParser()).invoke({
@@ -353,7 +353,6 @@ class ImtithalRAG:
                 "question": question,
             })
 
-        # --- Step 5: Store ---
         self.chat_history.append({
             "question": question,
             "answer": answer,
@@ -417,5 +416,3 @@ def main():
     rag.chat_interactive()
 
 rag_instance = ImtithalRAG()
-#if __name__ == "__main__":
-    #main()
