@@ -1,0 +1,23 @@
+# Python virtual environment
+venv/
+venv_clean/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Django stuff
+db.sqlite3
+*.sqlite3
+*.log
+
+# Environment variables
+.env
+
+# VS Code
+.vscode/
+
+# Backup / zip files
+*.zip

@@ -1,0 +1,442 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>امتثال | Imtithal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#0F3D2E;
+      --secondary:#2E8B57;
+      --bg:#F8F9FA;
+      --accent:#C9A227;
+      --text:#1F2933;
+      --muted:#6B7280;
+      --card:#FFFFFF;
+      --border:#E5E7EB;
+      --shadow:0 10px 24px rgba(0,0,0,.08);
+      --radius:16px;
+
+      --userBubble:#FFFFFF;
+      --assistantBubble: rgba(46,139,87,.08);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family:"Cairo",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    .app{ min-height:100vh; display:flex; flex-direction:column; }
+
+    header{
+      position:sticky; top:0; z-index:10;
+      background:rgba(248,249,250,.9);
+      backdrop-filter: blur(8px);
+      border-bottom:1px solid var(--border);
+    }
+
+    .topbar{
+      max-width:980px; margin:0 auto; padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+
+    .brand{ display:flex; align-items:center; gap:10px; min-width:240px; }
+
+    .logo-img{
+      width:66px; height:auto; object-fit:contain;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+    }
+
+    .brand h1{ margin:0; font-size:16px; color:var(--primary); }
+    .brand p{ margin:2px 0 0; font-size:12px; color:var(--muted); }
+
+    .tag{
+      font-size:12px; font-weight:800; padding:6px 10px;
+      border-radius:999px;
+      background: rgba(201,162,39,.12);
+      border:1px solid rgba(201,162,39,.35);
+      color:#7A5B00;
+    }
+
+    .chat{
+      flex:1; width:100%; max-width:980px; margin:0 auto;
+      padding:18px 18px 140px;
+    }
+
+    .hint{
+      margin: 10px 0 16px;
+      padding: 12px 14px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      font-size:13px;
+      color:var(--muted);
+      box-shadow:0 6px 16px rgba(0,0,0,.05);
+    }
+
+    .message{
+      display:flex;
+      gap:12px;
+      margin:14px 0;
+      align-items:flex-start;
+    }
+
+    .message.user{
+      justify-content:flex-end;
+    }
+
+    .message.assistant{
+      flex-direction:row-reverse;
+    }
+
+    .avatar{
+      width:34px; height:34px;
+      border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:13px;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--primary);
+      flex:0 0 auto;
+    }
+
+    .avatar.assistant{
+      background: linear-gradient(135deg, rgba(15,61,46,.12), rgba(46,139,87,.10));
+      border-color: rgba(46,139,87,.25);
+    }
+
+    .bubble{
+      width:100%;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      box-shadow:0 6px 16px rgba(0,0,0,.05);
+      line-height:1.9;
+      font-size:14px;
+      white-space:pre-wrap;
+      background:#fff;
+    }
+
+    .bubble.assistant{
+      background:var(--assistantBubble);
+      border-color:rgba(46,139,87,.25);
+    }
+
+    details{
+      margin-top:10px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px 12px;
+    }
+
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      color:var(--primary);
+      list-style:none;
+    }
+
+    summary::-webkit-details-marker{ display:none; }
+
+    .source{
+      margin:6px 0;
+      padding:8px 12px;
+      border-right:4px solid var(--accent);
+      background:rgba(201,162,39,.10);
+      border-radius:10px;
+      font-size:13px;
+      line-height:1.8;
+      color:#4B5563;
+    }
+
+    .typing span{
+      animation:blink 1.4s infinite both;
+    }
+    .typing span:nth-child(2){ animation-delay:.2s; }
+    .typing span:nth-child(3){ animation-delay:.4s; }
+
+    @keyframes blink{
+      0%{opacity:.2}
+      20%{opacity:1}
+      100%{opacity:.2}
+    }
+
+    .composerWrap{
+      position:fixed; left:0; right:0; bottom:0;
+      background:linear-gradient(to top,#F8F9FA 65%,transparent);
+      border-top:1px solid rgba(229,231,235,.65);
+      padding:14px 0 18px;
+    }
+
+    .composer{ max-width:980px; margin:0 auto; padding:0 18px; }
+
+    .composerBox{
+      display:flex; gap:10px; align-items:flex-end;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:10px;
+      box-shadow:var(--shadow);
+    }
+
+    textarea{
+      width:100%;
+      border:none;
+      resize:none;
+      min-height:48px;
+      max-height:140px;
+      font-family:inherit;
+      font-size:14px;
+    }
+
+    .sendBtn{
+      border:none;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:900;
+      background:var(--primary);
+      color:#fff;
+      cursor:pointer;
+    }
+
+    .smallNote{
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:8px;
+    }
+
+    /* NAV BAR */
+    .nav{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      padding:10px 0;
+      border-top:1px solid var(--border);
+      background:#fff;
+    }
+
+    .nav button{
+      border:none;
+      background:transparent;
+      font-family:inherit;
+      font-weight:900;
+      font-size:14px;
+      padding:8px 18px;
+      border-radius:999px;
+      cursor:pointer;
+      color:var(--muted);
+    }
+
+    .nav button.active{
+      background:rgba(46,139,87,.12);
+      color:var(--primary);
+      border:1px solid rgba(46,139,87,.35);
+    }
+
+    .page{ display:none; }
+    .page.active{ display:block; }
+
+    .sources{
+      max-width:980px;
+      margin:0 auto;
+      padding:24px 18px;
+    }
+
+    .pdf{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:14px;
+      margin-bottom:12px;
+      box-shadow:0 6px 16px rgba(0,0,0,.05);
+      font-weight:700;
+      color:var(--primary);
+      cursor:pointer;
+    }
+
+    #pdfSearch{
+      width:100%;
+      padding:10px;
+      margin-bottom:14px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      font-size:14px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="app">
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <img src="{% static 'imtithal_app/logo.jpeg' %}" class="logo-img">
+      <div>
+        <h1>امتثال | Imtithal</h1>
+      </div>
+    </div>
+    <div class="tag">MVP</div>
+  </div>
+
+  <div class="nav">
+    <button id="tab-chat" class="active" onclick="showPage('chat-page')">💬 المحادثة</button>
+    <button id="tab-sources" onclick="showPage('sources-page')">📚 المصادر</button>
+  </div>
+</header>
+
+<!-- CHAT PAGE -->
+<main id="chat-page" class="page active">
+<div class="chat">
+<div class="hint"> 💡 اكتب سؤالك بصيغة واضحة (المجال + الحالة + المطلوب). مثال: <b>ما متطلبات مشاركة البيانات مع طرف ثالث؟</b> </div>
+
+{% for msg in chat_history %}
+
+  {% if msg.role == "user" %}
+  <div class="message user">
+    <div class="avatar">أنت</div>
+    <div class="bubble">{{ msg.content }}</div>
+  </div>
+  {% endif %}
+
+  {% if msg.role == "assistant" %}
+  <div class="message assistant">
+    <div class="avatar assistant">🤖</div>
+    <div class="bubble assistant">
+      {{ msg.content }}
+
+      {% if msg.sources %}
+      <details>
+        <summary>📄 عرض المصادر المسترجعة</summary>
+        {% for s in msg.sources %}
+        <div class="source">
+          <b>{{ s.file_name }}</b><br>
+          {{ s.snippet }}
+        </div>
+        {% endfor %}
+      </details>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
+{% endfor %}
+
+
+  <div id="loading" class="message assistant" style="display:none;">
+    <div class="avatar assistant">🤖</div>
+    <div style="font-size: large;" class="bubble assistant">
+      <span class="typing">جارِ التفكير<span>.</span><span>.</span><span>.</span></span>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- SOURCES PAGE -->
+<main id="sources-page" class="page">
+  <div class="sources">
+    <input type="text" id="pdfSearch" placeholder="ابحث عن ملف PDF..." onkeyup="filterPDFs()">
+
+    <div class="pdf-list">
+      <!-- SDAIA PDFs -->
+      {% for pdf in sdaia_pdfs %}
+      <div class="pdf" onclick="viewPDF('{{ pdf }}', 'SDAIA')">📄 {{ pdf|cut:".pdf" }}</div>
+
+      {% endfor %}
+
+      <!-- NCA PDFs -->
+      {% for pdf in nca_pdfs %}
+     <div class="pdf" onclick="viewPDF('{{ pdf }}', 'NCA')">📄 {{ pdf|cut:".pdf" }}</div>
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+<div class="composerWrap">
+  <div class="composer">
+    <form method="post" class="composerBox">
+      {% csrf_token %}
+<textarea id="input" name="question" placeholder="اكتب سؤالك هنا..." required>{{ question|default:'' }}</textarea><button style="width: 5rem;" class="sendBtn" type="submit">إرسال ⬅</button>
+    </form>
+    <div class="smallNote">⚠️ النتائج <b>إرشادية</b> وتعتمد على النصوص المسترجعة، ولا تُعد استشارة قانونية أو حكم امتثال نهائي.</div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const ta = document.getElementById("input");
+const loading = document.getElementById("loading");
+const chatContainer = document.querySelector(".chat");
+
+ta.addEventListener("input", () => {
+  ta.style.height = "auto";
+  ta.style.height = Math.min(140, ta.scrollHeight) + "px";
+});
+
+document.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const questionText = ta.value.trim();
+  if (!questionText) return;
+
+  // Create user's message
+  const userMessage = document.createElement("div");
+  userMessage.className = "message user";
+  userMessage.innerHTML = `<div class="avatar">أنت</div><div class="bubble">${questionText}</div>`;
+
+  // Insert user's message just before the loading bubble
+  chatContainer.insertBefore(userMessage, loading);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  // Show loading bubble
+  loading.style.display = "flex";
+
+  // Submit the form after a short delay
+  setTimeout(() => {
+    e.target.submit();
+  }, 50);
+});
+
+function showPage(page){
+  document.getElementById("chat-page").classList.remove("active");
+  document.getElementById("sources-page").classList.remove("active");
+  document.getElementById("tab-chat").classList.remove("active");
+  document.getElementById("tab-sources").classList.remove("active");
+
+  if(page === "chat-page"){
+    document.getElementById("chat-page").classList.add("active");
+    document.getElementById("tab-chat").classList.add("active");
+  } else {
+    document.getElementById("sources-page").classList.add("active");
+    document.getElementById("tab-sources").classList.add("active");
+  }
+}
+
+function filterPDFs() {
+  const query = document.getElementById('pdfSearch').value.toLowerCase();
+  const pdfs = document.querySelectorAll('.pdf-list .pdf');
+  pdfs.forEach(pdf => {
+    const text = pdf.textContent.toLowerCase();
+    pdf.style.display = text.includes(query) ? 'block' : 'none';
+  });
+}
+
+function viewPDF(filename, folder){
+    window.open("/media/" + folder + "/" + filename, "_blank");
+}
+
+</script>
+
+</body>
+</html>
